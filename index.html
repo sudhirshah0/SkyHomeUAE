@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skyhome UAE – Find Your Dream Property in Dubai & Abu Dhabi</title>
+  <meta name="description" content="Skyhome UAE is the leading real estate marketplace in Dubai, Abu Dhabi & Sharjah. Find, buy, rent or sell your dream home in the UAE." />
+  <meta name="keywords" content="Dubai real estate, Abu Dhabi property, UAE homes for sale, rent Dubai apartment, buy villa UAE" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER / NAVBAR ===== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#" class="logo" id="logo">
+        <svg class="logo-svg" width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Burj Khalifa Inspired Architectural Vector Logo -->
+          <path d="M20 2L21.5 8H18.5L20 2Z" fill="url(#logo-grad-1)"/>
+          <path d="M17 9H23V16H17V9Z" fill="url(#logo-grad-1)"/>
+          <path d="M14 17H26V25H14V17Z" fill="url(#logo-grad-2)"/>
+          <path d="M10 26H30V36H10V26Z" fill="url(#logo-grad-2)"/>
+          <!-- Base Foundation Line -->
+          <path d="M6 37H34V39H6V37Z" fill="#e8222e"/>
+          <!-- Roof Spire Peak -->
+          <line x1="20" y1="0" x2="20" y2="4" stroke="#e8222e" stroke-width="1.5" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="logo-grad-1" x1="20" y1="2" x2="20" y2="16" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#e8222e"/>
+              <stop offset="1" stop-color="#0d1b2a"/>
+            </linearGradient>
+            <linearGradient id="logo-grad-2" x1="20" y1="17" x2="20" y2="36" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#0d1b2a"/>
+              <stop offset="1" stop-color="#1a2d42"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="logo-text">Sky<span>home</span> UAE</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#listings" class="nav-link">Listings</a></li>
+        <li><a href="#amenities" class="nav-link">Amenities</a></li>
+        <li><a href="#news" class="nav-link">News</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li class="mobile-nav-cta-item"><a href="#contact" class="btn btn-primary" id="mobile-nav-cta">Add Listing</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-primary" id="nav-cta">Add Listing</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=85&auto=format&fit=crop" alt="Dubai Villa Background" class="hero-bg-img" />
+      <div class="hero-overlay"></div>
+    </div>
+    
+    <div class="container hero-container">
+      <div class="hero-content" data-animate>
+        <div class="section-badge section-badge--light">
+          <span class="badge-line"></span>
+          Dubai · Abu Dhabi · Sharjah
+        </div>
+        <h1 class="hero-title">Find Your Dream<br/><span class="highlight">Property in UAE</span></h1>
+        <p class="hero-subtitle">Discover world-class luxury homes, apartments, and villas across the UAE's most prestigious locations — from Downtown Dubai to Palm Jumeirah.</p>
+        
+        <!-- Search Input Bar matching uploaded reference image -->
+        <div class="search-bar-pill" id="search-pill-trigger">
+          <input type="text" placeholder="Enter an address or City name" class="desktop-placeholder" readonly />
+          <button class="search-circle-btn" aria-label="Open search filters">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODAL POPUP FOR DETAILED SEARCH ===== -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal" id="search-modal">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close search popup">&times;</button>
+      
+      <div class="modal-header">
+        <h3>Find Your Dream Property</h3>
+        <p>Filter properties across top locations in the UAE</p>
+      </div>
+
+      <div class="search-tabs">
+        <button type="button" class="search-tab active" id="tab-buy" data-tab="buy">Buy</button>
+        <button type="button" class="search-tab" id="tab-rent" data-tab="rent">Rent</button>
+        <button type="button" class="search-tab" id="tab-sell" data-tab="sell">Sell</button>
+      </div>
+
+      <form class="modal-search-form" id="search-form">
+        <div class="form-group form-group--full">
+          <label for="search-keyword">Address, City, Neighborhood or Area</label>
+          <input type="text" id="search-keyword" placeholder="e.g. Downtown Dubai, Palm Jumeirah, Yas Island..." />
+        </div>
+
+        <div class="modal-form-grid">
+          <div class="search-field">
+            <label for="search-location">Emirate Location</label>
+            <div class="select-wrapper">
+              <select id="search-location">
+                <option value="">Select Emirate</option>
+                <option>Dubai</option>
+                <option>Abu Dhabi</option>
+                <option>Sharjah</option>
+                <option>Ajman</option>
+                <option>Ras Al Khaimah</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="search-field">
+            <label for="search-type">Property Type</label>
+            <div class="select-wrapper">
+              <select id="search-type">
+                <option value="">Property Type</option>
+                <option>Villa</option>
+                <option>Apartment</option>
+                <option>Penthouse</option>
+                <option>Townhouse</option>
+                <option>Office</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="search-field">
+            <label for="search-budget">Budget Range (AED)</label>
+            <div class="select-wrapper">
+              <select id="search-budget">
+                <option value="">Select Budget</option>
+                <option>Up to 1M AED</option>
+                <option>1M – 3M AED</option>
+                <option>3M – 7M AED</option>
+                <option>7M – 15M AED</option>
+                <option>15M+ AED</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="search-field">
+            <label for="search-bedrooms">Bedrooms</label>
+            <div class="select-wrapper">
+              <select id="search-bedrooms">
+                <option value="">Any Bedrooms</option>
+                <option>Studio</option>
+                <option>1 Bedroom</option>
+                <option>2 Bedrooms</option>
+                <option>3 Bedrooms</option>
+                <option>4+ Bedrooms</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-form-footer">
+          <button type="submit" class="btn btn-primary modal-search-submit" id="search-submit">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            Show Properties
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== ABOUT / LEADING MARKETPLACE SECTION ===== -->
+  <section class="about" id="about">
+    <div class="container about-container">
+      <div class="about-image" data-animate>
+        <div class="about-img-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=85&auto=format&fit=crop"
+            alt="Luxury Dubai Interior"
+            class="about-img"
+          />
+          <div class="about-experience-badge">
+            <span class="exp-num">12+</span>
+            <span class="exp-label">Years in UAE Market</span>
+          </div>
+          <div class="about-float-card">
+            <div class="float-card-icon">🏆</div>
+            <div>
+              <strong>#1 Rated</strong>
+              <p>Real Estate Agency in Dubai</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-content" data-animate>
+        <div class="section-badge">
+          <span class="badge-line"></span>
+          About Us
+        </div>
+        <h2 class="section-title">The Leading Real Estate<br/><span class="highlight">Platform in the UAE</span></h2>
+        <p class="about-desc">Skyhome UAE connects buyers, renters, and investors with the finest properties across Dubai, Abu Dhabi, and Sharjah. We bring transparency, expertise, and technology to make your property journey seamless.</p>
+        <ul class="about-features">
+          <li class="about-feature">
+            <span class="feature-icon">✔</span>
+            <div>
+              <strong>RERA Certified Agents</strong>
+              <p>All our agents are certified by Dubai's Real Estate Regulatory Agency (RERA).</p>
+            </div>
+          </li>
+          <li class="about-feature">
+            <span class="feature-icon">✔</span>
+            <div>
+              <strong>Off-Plan & Ready Properties</strong>
+              <p>Access exclusive off-plan deals from top UAE developers like Emaar & Aldar.</p>
+            </div>
+          </li>
+          <li class="about-feature">
+            <span class="feature-icon">✔</span>
+            <div>
+              <strong>Golden Visa Guidance</strong>
+              <p>We help investors qualify for UAE Golden Visa through property investments.</p>
+            </div>
+          </li>
+        </ul>
+        <div class="about-btn-wrap">
+          <a href="#listings" class="btn btn-primary" id="about-cta">Browse Properties</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== OUR MAIN FOCUS SECTION ===== -->
+  <section class="focus" id="focus">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <h2 class="section-title">Our Main Focus</h2>
+        <p class="section-subtitle">Comprehensive UAE real estate services tailored for residents, expats, and investors</p>
+      </div>
+      <div class="focus-grid">
+        <div class="focus-card" data-animate id="focus-buy">
+          <div class="focus-icon-wrap">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+          </div>
+          <h3>Buy a Property</h3>
+          <p>Find freehold villas, luxury apartments and penthouses across Dubai, Abu Dhabi & Sharjah at the best market prices.</p>
+          <a href="#listings" class="focus-link">Explore Now <span>→</span></a>
+        </div>
+        <div class="focus-card focus-card--active" data-animate id="focus-rent">
+          <div class="focus-icon-wrap">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+          </div>
+          <h3>Rent a Property</h3>
+          <p>Discover premium rental units across Downtown Dubai, Palm Jumeirah, JBR, Yas Island, and more prime areas.</p>
+          <a href="#listings" class="focus-link">Explore Now <span>→</span></a>
+        </div>
+        <div class="focus-card" data-animate id="focus-invest">
+          <div class="focus-icon-wrap">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <h3>Invest in UAE</h3>
+          <p>Maximize ROI with our curated investment properties. UAE offers 0% property tax and high rental yields of 6–9%.</p>
+          <a href="#contact" class="focus-link">Get Advice <span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED LISTINGS SECTION ===== -->
+  <section class="listings" id="listings">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <div class="section-badge">
+          <span class="badge-line"></span>
+          UAE Properties
+        </div>
+        <h2 class="section-title">Featured Listings</h2>
+        <p class="section-subtitle">Hand-picked premium properties across the UAE's most sought-after locations</p>
+      </div>
+      <div class="listings-grid">
+
+        <div class="listing-card" data-animate id="listing-1">
+          <div class="listing-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=85&auto=format&fit=crop"
+              alt="Dubai Villa"
+              class="listing-img"
+            />
+            <span class="listing-badge listing-badge--sale">For Sale</span>
+            <div class="listing-img-overlay">
+              <button class="wish-btn" aria-label="Save property">♡</button>
+            </div>
+          </div>
+          <div class="listing-info">
+            <div class="listing-price">AED 4,200,000</div>
+            <h3 class="listing-title">Luxury 5-Bed Villa – Palm Jumeirah</h3>
+            <p class="listing-address">📍 Palm Jumeirah, Dubai</p>
+            <div class="listing-meta">
+              <span class="meta-item">🛏 5 Beds</span>
+              <span class="meta-item">🚿 6 Baths</span>
+              <span class="meta-item">📐 6,200 sqft</span>
+            </div>
+            <div class="listing-footer">
+              <div class="agent-info">
+                <div class="agent-avatar">AK</div>
+                <div>
+                  <span class="agent-name">Ahmed Al Kaabi</span>
+                  <span class="agent-badge">RERA Certified</span>
+                </div>
+              </div>
+              <a href="#contact" class="btn btn-sm btn-outline">Details</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="listing-card" data-animate id="listing-2">
+          <div class="listing-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=700&q=85&auto=format&fit=crop"
+              alt="Downtown Dubai Apartment"
+              class="listing-img"
+            />
+            <span class="listing-badge listing-badge--rent">For Rent</span>
+            <div class="listing-img-overlay">
+              <button class="wish-btn" aria-label="Save property">♡</button>
+            </div>
+          </div>
+          <div class="listing-info">
+            <div class="listing-price">AED 180,000 <span>/year</span></div>
+            <h3 class="listing-title">Modern 3-Bed Apartment – Downtown</h3>
+            <p class="listing-address">📍 Downtown Dubai, Dubai</p>
+            <div class="listing-meta">
+              <span class="meta-item">🛏 3 Beds</span>
+              <span class="meta-item">🚿 3 Baths</span>
+              <span class="meta-item">📐 2,400 sqft</span>
+            </div>
+            <div class="listing-footer">
+              <div class="agent-info">
+                <div class="agent-avatar">FH</div>
+                <div>
+                  <span class="agent-name">Fatima Hassan</span>
+                  <span class="agent-badge">RERA Certified</span>
+                </div>
+              </div>
+              <a href="#contact" class="btn btn-sm btn-outline">Details</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="listing-card" data-animate id="listing-3">
+          <div class="listing-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=700&q=85&auto=format&fit=crop"
+              alt="Abu Dhabi Penthouse"
+              class="listing-img"
+            />
+            <span class="listing-badge listing-badge--new">Off-Plan</span>
+            <div class="listing-img-overlay">
+              <button class="wish-btn" aria-label="Save property">♡</button>
+            </div>
+          </div>
+          <div class="listing-info">
+            <div class="listing-price">AED 7,850,000</div>
+            <h3 class="listing-title">Sea-View Penthouse – Yas Island</h3>
+            <p class="listing-address">📍 Yas Island, Abu Dhabi</p>
+            <div class="listing-meta">
+              <span class="meta-item">🛏 4 Beds</span>
+              <span class="meta-item">🚿 5 Baths</span>
+              <span class="meta-item">📐 5,800 sqft</span>
+            </div>
+            <div class="listing-footer">
+              <div class="agent-info">
+                <div class="agent-avatar">MR</div>
+                <div>
+                  <span class="agent-name">Mohammed Rashid</span>
+                  <span class="agent-badge">RERA Certified</span>
+                </div>
+              </div>
+              <a href="#contact" class="btn btn-sm btn-outline">Details</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="listings-cta" data-animate>
+        <a href="#contact" class="btn btn-primary" id="view-all-btn">View All UAE Properties</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AREAS WE COVER (NEW UAE SECTION) ===== -->
+  <section class="areas" id="areas">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <div class="section-badge">
+          <span class="badge-line"></span>
+          Locations
+        </div>
+        <h2 class="section-title">Areas We Cover Across the UAE</h2>
+        <p class="section-subtitle">Premium real estate in the most prestigious Emirates and neighbourhoods</p>
+      </div>
+      <div class="areas-grid">
+        <div class="area-card" data-animate id="area-dubai" style="--area-bg: url('https://images.unsplash.com/photo-1512632578888-169bbbc64f33?w=600&q=80&auto=format&fit=crop')">
+          <div class="area-overlay"></div>
+          <div class="area-info">
+            <h3>Dubai</h3>
+            <p>1,800+ Properties</p>
+          </div>
+        </div>
+        <div class="area-card" data-animate id="area-abudhabi" style="--area-bg: url('https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&q=80&auto=format&fit=crop')">
+          <div class="area-overlay"></div>
+          <div class="area-info">
+            <h3>Abu Dhabi</h3>
+            <p>900+ Properties</p>
+          </div>
+        </div>
+        <div class="area-card" data-animate id="area-sharjah" style="--area-bg: url('https://images.unsplash.com/photo-1575517111478-7f6afd0973db?w=600&q=80&auto=format&fit=crop')">
+          <div class="area-overlay"></div>
+          <div class="area-info">
+            <h3>Sharjah</h3>
+            <p>500+ Properties</p>
+          </div>
+        </div>
+        <div class="area-card" data-animate id="area-rak" style="--area-bg: url('https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80&auto=format&fit=crop')">
+          <div class="area-overlay"></div>
+          <div class="area-info">
+            <h3>Ras Al Khaimah</h3>
+            <p>300+ Properties</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BUILDING AMENITIES SECTION ===== -->
+  <section class="amenities" id="amenities">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <div class="section-badge">
+          <span class="badge-line"></span>
+          Premium Features
+        </div>
+        <h2 class="section-title">World-Class Amenities</h2>
+        <p class="section-subtitle">UAE properties come with the finest facilities for an unmatched lifestyle</p>
+      </div>
+      <div class="amenities-grid">
+        <div class="amenity-card" data-animate id="amenity-parking">
+          <div class="amenity-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <h4>Private Parking</h4>
+          <p>Covered, secure private parking for residents</p>
+        </div>
+        <div class="amenity-card" data-animate id="amenity-pool">
+          <div class="amenity-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12h20M6 7a4 4 0 118 0M2 17c1.5 0 3 .5 3 1.5s1.5 1.5 3 1.5 3-.5 3-1.5 1.5-1.5 3-1.5 3 .5 3 1.5"/></svg>
+          </div>
+          <h4>Infinity Pool</h4>
+          <p>Temperature-controlled rooftop infinity pool</p>
+        </div>
+        <div class="amenity-card" data-animate id="amenity-gym">
+          <div class="amenity-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4v16M18 4v16M10 8h4M10 16h4M2 12h4M18 12h4"/></svg>
+          </div>
+          <h4>State-of-Art Gym</h4>
+          <p>Fully-equipped fitness & wellness centre</p>
+        </div>
+        <div class="amenity-card" data-animate id="amenity-concierge">
+          <div class="amenity-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h4>24/7 Concierge</h4>
+          <p>Round-the-clock luxury concierge service</p>
+        </div>
+        <div class="amenity-card" data-animate id="amenity-beach">
+          <div class="amenity-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22V12m0 0C12 7 7 4 2 6c5 0 8 3 10 6zm0 0c0-5 5-8 10-6-5 0-8 3-10 6z"/></svg>
+          </div>
+          <h4>Private Beach</h4>
+          <p>Exclusive private beach access for residents</p>
+        </div>
+        <div class="amenity-card" data-animate id="amenity-security">
+          <div class="amenity-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4>Smart Security</h4>
+          <p>AI-powered 24/7 surveillance & gated access</p>
+        </div>
+        <div class="amenity-card" data-animate id="amenity-kids">
+          <div class="amenity-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <h4>Kids Play Area</h4>
+          <p>Safe and fun outdoor play zones for children</p>
+        </div>
+        <div class="amenity-card" data-animate id="amenity-view">
+          <div class="amenity-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h4>Panoramic Views</h4>
+          <p>Breathtaking Dubai skyline & Arabian Gulf views</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY UAE SECTION ===== -->
+  <section class="why-uae" id="why-uae">
+    <div class="container">
+      <div class="why-uae-inner" data-animate>
+        <div class="why-uae-text">
+          <div class="section-badge">
+            <span class="badge-line"></span>
+            Why Invest in UAE
+          </div>
+          <h2 class="section-title">The World's Most <span class="highlight">Investor-Friendly</span> Property Market</h2>
+          <p>UAE offers unmatched advantages for real estate investors and homebuyers alike. With zero property tax, a booming economy, and world-class infrastructure, it's the ideal place to own your dream home.</p>
+        </div>
+        <div class="why-uae-cards">
+          <div class="why-card" id="why-tax">
+            <span class="why-card-num">0%</span>
+            <h4>Property Tax</h4>
+            <p>No annual property or capital gains tax in the UAE</p>
+          </div>
+          <div class="why-card" id="why-roi">
+            <span class="why-card-num">8%</span>
+            <h4>Avg. Rental Yield</h4>
+            <p>Among the highest rental returns globally</p>
+          </div>
+          <div class="why-card" id="why-visa">
+            <span class="why-card-num">10yr</span>
+            <h4>Golden Visa</h4>
+            <p>Property investment qualifies for UAE Golden Visa</p>
+          </div>
+          <div class="why-card" id="why-growth">
+            <span class="why-card-num">↑ 22%</span>
+            <h4>Price Growth</h4>
+            <p>Dubai property values rose 22% in 2024</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LATEST NEWS SECTION ===== -->
+  <section class="news" id="news">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <div class="section-badge">
+          <span class="badge-line"></span>
+          UAE Property News
+        </div>
+        <h2 class="section-title">Latest News & Insights</h2>
+        <p class="section-subtitle">Stay ahead with the latest trends in UAE real estate</p>
+      </div>
+      <div class="news-grid">
+
+        <div class="news-card" data-animate id="news-1">
+          <div class="news-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=700&q=85&auto=format&fit=crop"
+              alt="Dubai skyline"
+              class="news-img"
+            />
+            <span class="news-date">Aug 08, 2026</span>
+          </div>
+          <div class="news-content">
+            <span class="news-category">Market Update</span>
+            <h3 class="news-title">Dubai Records Highest-Ever Real Estate Transactions in H1 2026</h3>
+            <p class="news-excerpt">Dubai's property market hit a historic milestone with over AED 300 billion in transactions in the first half of 2026, driven by strong global demand.</p>
+            <a href="#" class="news-link" id="news-link-1">Read More →</a>
+          </div>
+        </div>
+
+        <div class="news-card" data-animate id="news-2">
+          <div class="news-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=700&q=85&auto=format&fit=crop"
+              alt="Abu Dhabi real estate"
+              class="news-img"
+            />
+            <span class="news-date">Aug 04, 2026</span>
+          </div>
+          <div class="news-content">
+            <span class="news-category">Investment</span>
+            <h3 class="news-title">Abu Dhabi's Saadiyat Island Sees Surge in Luxury Villa Demand</h3>
+            <p class="news-excerpt">Saadiyat Island's cultural district and beachfront villas are attracting ultra-high-net-worth buyers from Europe, Asia, and the Americas.</p>
+            <a href="#" class="news-link" id="news-link-2">Read More →</a>
+          </div>
+        </div>
+
+        <div class="news-card" data-animate id="news-3">
+          <div class="news-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=700&q=85&auto=format&fit=crop"
+              alt="Modern UAE apartment"
+              class="news-img"
+            />
+            <span class="news-date">Jul 30, 2026</span>
+          </div>
+          <div class="news-content">
+            <span class="news-category">Golden Visa</span>
+            <h3 class="news-title">How a AED 2M Property in UAE Can Secure Your 10-Year Golden Visa</h3>
+            <p class="news-excerpt">A comprehensive guide to UAE's Golden Visa program — eligibility criteria, benefits, and how Skyhome UAE can help you navigate the process.</p>
+            <a href="#" class="news-link" id="news-link-3">Read More →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT US SECTION ===== -->
+  <section class="contact" id="contact">
+    <div class="container contact-container">
+      <div class="section-header" data-animate>
+        <h2 class="section-title">Contact Our UAE Experts</h2>
+        <p class="section-subtitle">Our RERA-certified agents are ready to help you find your perfect property</p>
+      </div>
+      <form class="contact-form" id="contact-form" data-animate>
+        <!-- Row 1: Full Name & Email -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="full-name">Full Name</label>
+            <input type="text" id="full-name" name="full_name" placeholder="Enter your full name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required />
+          </div>
+        </div>
+
+        <!-- Row 2: Phone/WhatsApp & Preferred Emirate -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone / WhatsApp</label>
+            <input type="tel" id="phone" name="phone" placeholder="+971 50 XXX XXXX" />
+          </div>
+          <div class="form-group">
+            <label for="emirate">Preferred Emirate</label>
+            <div class="select-wrapper">
+              <select id="emirate" name="emirate">
+                <option value="">Select Emirate</option>
+                <option>Dubai</option>
+                <option>Abu Dhabi</option>
+                <option>Sharjah</option>
+                <option>Ajman</option>
+                <option>Ras Al Khaimah</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 3: Property Type & Budget Range -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="purpose">Property Type</label>
+            <div class="select-wrapper">
+              <select id="purpose" name="purpose">
+                <option value="">Property Type</option>
+                <option>Villa</option>
+                <option>Apartment</option>
+                <option>Penthouse</option>
+                <option>Townhouse</option>
+                <option>Office</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contact-budget">Budget Range (AED)</label>
+            <div class="select-wrapper">
+              <select id="contact-budget" name="budget">
+                <option value="">Select Budget</option>
+                <option>Up to 1M AED</option>
+                <option>1M – 3M AED</option>
+                <option>3M – 7M AED</option>
+                <option>7M – 15M AED</option>
+                <option>15M+ AED</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group form-group--full">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" placeholder="Tell us about your property preferences in UAE..." rows="5" required></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary btn-lg" id="submit-btn">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== CTA BANNER SECTION ===== -->
+  <section class="cta-banner" id="cta-banner">
+    <div class="cta-banner-bg">
+      <img
+        src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80&auto=format&fit=crop"
+        alt="Dubai architectural building at day"
+        class="cta-bg-img"
+      />
+      <div class="cta-bg-overlay"></div>
+    </div>
+    <div class="container cta-inner">
+      <div class="cta-text">
+        <h2>Looking for Your Dream Home in UAE?</h2>
+        <p>Talk to our RERA-certified experts and find your perfect property in Dubai, Abu Dhabi or Sharjah today.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="#contact" class="btn-cta-find" id="cta-btn">Find Now</a>
+        <a href="tel:+97142000000" class="btn-cta-call" id="cta-call">📞 +971 4 200 0000</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo footer-logo">
+          <svg class="logo-svg" width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2L21.5 8H18.5L20 2Z" fill="#e8222e"/>
+            <path d="M17 9H23V16H17V9Z" fill="#e8222e"/>
+            <path d="M14 17H26V25H14V17Z" fill="#ffffff"/>
+            <path d="M10 26H30V36H10V26Z" fill="#ffffff"/>
+            <path d="M6 37H34V39H6V37Z" fill="#e8222e"/>
+            <line x1="20" y1="0" x2="20" y2="4" stroke="#e8222e" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="logo-text" style="color:#fff">Skyhome <span style="color:var(--primary)">UAE</span></span>
+        </a>
+        <p class="footer-desc">Your trusted partner for premium real estate in Dubai, Abu Dhabi, and across the UAE. RERA Certified. Investor-Focused. Always Transparent.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/sudhir-sah/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://www.instagram.com/sudhirdesign.in/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/sudhirdesign.in/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+          </a>
+        </div>
+        <div class="footer-cert">
+          <span class="cert-badge">🏛️ RERA Certified</span>
+          <span class="cert-badge">🇦🇪 DLD Approved</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Navigate</h4>
+        <ul class="footer-links">
+          <li><a href="#home" class="footer-link">Home</a></li>
+          <li><a href="#about" class="footer-link">About Us</a></li>
+          <li><a href="#listings" class="footer-link">Listings</a></li>
+          <li><a href="#areas" class="footer-link">Areas</a></li>
+          <li><a href="#news" class="footer-link">News & Insights</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Our Services</h4>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">Buy a Property</a></li>
+          <li><a href="#" class="footer-link">Rent a Property</a></li>
+          <li><a href="#" class="footer-link">Sell a Property</a></li>
+          <li><a href="#" class="footer-link">UAE Investment Advice</a></li>
+          <li><a href="#" class="footer-link">Golden Visa Assistance</a></li>
+          <li><a href="#" class="footer-link">Mortgage Services</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Contact UAE Office</h4>
+        <ul class="footer-contact-list">
+          <li>
+            <span class="contact-icon">📍</span>
+            <span>Business Bay, Dubai, UAE</span>
+          </li>
+          <li>
+            <span class="contact-icon">💬</span>
+            <a href="https://wa.me/9779823089616" target="_blank" rel="noopener noreferrer" class="footer-link">WhatsApp: +977-9823089616</a>
+          </li>
+          <li>
+            <span class="contact-icon">✉️</span>
+            <a href="mailto:sudhir.rit2021@gmail.com" class="footer-link">sudhir.rit2021@gmail.com</a>
+          </li>
+          <li>
+            <span class="contact-icon">🕐</span>
+            <span>Sun – Thu: 9am – 6pm GST</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p class="footer-copy">© 2026 Skyhome UAE. All rights reserved. | RERA License No. 12345 | Designed by <a href="https://www.linkedin.com/in/sudhir-sah/" target="_blank" rel="noopener noreferrer" class="designer-credit">Sudhir Sah</a></p>
+        <div class="footer-bottom-links">
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+          <a href="#" class="footer-link">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#home" class="back-to-top" id="back-to-top" aria-label="Back to top">↑</a>
+
+  <script src="script.js"></script>
+</body>
+</html>
