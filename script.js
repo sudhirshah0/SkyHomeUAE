@@ -151,8 +151,10 @@ document.querySelectorAll(
   '.focus-grid, .listings-grid, .amenities-grid, .news-grid, .areas-grid, .why-uae-cards, .about-features'
 ).forEach(parent => {
   const children = parent.querySelectorAll('[data-animate]');
+  const isAmenities = parent.classList.contains('amenities-grid');
+  const delayStep = isAmenities ? 0.08 : 0.12; // Snappy 0.08s step for amenities grid so cards load instantly without long wait
   children.forEach((child, i) => {
-    child.style.transitionDelay = `${(i + 1) * 0.2}s`;
+    child.style.transitionDelay = `${(i + 1) * delayStep}s`;
   });
 });
 
@@ -168,7 +170,7 @@ const animateObserver = new IntersectionObserver((entries) => {
       entry.target.classList.remove('animated');
     }
   });
-}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.1, rootMargin: '0px 0px 50px 0px' });
 
 animateEls.forEach(el => animateObserver.observe(el));
 
