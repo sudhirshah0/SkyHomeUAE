@@ -113,31 +113,38 @@ p {
 /* ===== HEADER ===== */
 .header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--gray-mid); transition: box-shadow var(--transition);
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom: none;
+  transition: background var(--transition), backdrop-filter var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
-.header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
-.nav { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 24px; }
+.header.scrolled {
+  background: rgba(13, 27, 42, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+}
+.nav { display: flex; align-items: center; justify-content: space-between; height: 80px; gap: 24px; }
 
-.logo { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; font-weight: 800; color: var(--dark); flex-shrink: 0; }
+.logo { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; font-weight: 800; color: var(--white); flex-shrink: 0; }
 .logo-svg { flex-shrink: 0; transition: transform var(--transition); }
 .logo:hover .logo-svg { transform: translateY(-2px) scale(1.05); }
 
 .nav-links { display: flex; align-items: center; gap: 4px; }
 .nav-link {
-  padding: 8px 13px; border-radius: 6px; font-size: 0.88rem;
-  font-weight: 500; color: var(--gray-dark); transition: all var(--transition); position: relative;
+  padding: 8px 15px; border-radius: 6px; font-size: 0.9rem;
+  font-weight: 500; color: rgba(255, 255, 255, 0.9); transition: all var(--transition); position: relative;
 }
 .nav-link::after {
-  content: ''; position: absolute; bottom: 2px; left: 13px; right: 13px;
+  content: ''; position: absolute; bottom: 2px; left: 15px; right: 15px;
   height: 2px; background: var(--primary); border-radius: 2px;
   transform: scaleX(0); transition: transform var(--transition);
 }
-.nav-link:hover, .nav-link.active { color: var(--primary); }
+.nav-link:hover, .nav-link.active { color: var(--white); }
 .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
 
 .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-.hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 2px; transition: all 0.3s; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
 
 /* ===== HERO ===== */
 .hero {
