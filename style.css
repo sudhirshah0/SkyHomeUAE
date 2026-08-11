@@ -753,7 +753,7 @@ p {
   .mobile-nav-cta-item { display: block; margin-top: 10px; }
   .hamburger { display: flex; }
   
-  /* Animated Centered Mobile Navigation Menu Popup for Tablets & iPads */
+  /* Animated Centered Mobile Navigation Menu Popup for Tablets & iPads with Transparent Glassmorphism */
   .nav-links.open {
     display: flex;
     flex-direction: column;
@@ -762,11 +762,13 @@ p {
     text-align: center;
     position: fixed;
     top: 72px; left: 0; right: 0;
-    background: var(--white);
+    background: rgba(13, 27, 42, 0.88);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
     padding: 32px 24px;
-    gap: 16px;
-    border-bottom: 1px solid var(--gray-mid);
-    box-shadow: 0 16px 40px rgba(13, 27, 42, 0.18);
+    gap: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
     z-index: 999;
     
     /* Smooth Dropdown Slide & Fade In Animation */
@@ -776,8 +778,22 @@ p {
   }
 
   .nav-links.open .nav-link {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 600;
+    color: rgba(255, 255, 255, 0.95) !important;
+  }
+
+  .nav-links.open .nav-link:hover,
+  .nav-links.open .nav-link.active {
+    color: var(--white) !important;
+  }
+
+  .nav-links.open #mobile-nav-cta {
+    width: 80%;
+    max-width: 260px;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    box-shadow: 0 8px 24px rgba(232, 34, 46, 0.4);
   }
 
   .footer-grid { grid-template-columns: 1fr 1fr; }
