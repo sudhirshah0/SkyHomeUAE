@@ -1,14 +1,33 @@
-// Force page to start at top hero section on refresh
+// ===== GUARANTEE PAGE STARTS AT HERO SECTION ON REFRESH =====
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
+
 window.addEventListener('beforeunload', () => {
   window.scrollTo(0, 0);
 });
+
+window.addEventListener('unload', () => {
+  window.scrollTo(0, 0);
+});
+
+// Force immediate scroll reset to top hero section on load
+window.scrollTo(0, 0);
+document.documentElement.scrollTop = 0;
+document.body.scrollTop = 0;
+
 window.addEventListener('DOMContentLoaded', () => {
-  if (!window.location.hash) {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  
+  // Trigger header navigation entrance animations immediately on page load
+  setTimeout(() => {
     window.scrollTo(0, 0);
-  }
+    document.querySelectorAll('#header [data-animate], .hero [data-animate]').forEach(el => {
+      el.classList.add('animated');
+    });
+  }, 50);
 });
 
 // ===== NAVBAR SCROLL =====
@@ -124,26 +143,33 @@ const observeSections = new IntersectionObserver((entries) => {
 }, { threshold: 0.35 });
 sections.forEach(sec => observeSections.observe(sec));
 
-// ===== SCROLL ANIMATIONS =====
+// ===== SCROLL ANIMATIONS WITH STAGGER (BIDIRECTIONAL SCROLL UP & DOWN) =====
 const animateEls = document.querySelectorAll('[data-animate]');
 
-// Stagger grids
+// Automatically apply sequential staggered transition delays to grid items & lists
 document.querySelectorAll(
-  '.focus-grid, .listings-grid, .amenities-grid, .news-grid, .areas-grid, .why-uae-cards'
+  '.focus-grid, .listings-grid, .amenities-grid, .news-grid, .areas-grid, .why-uae-cards, .about-features'
 ).forEach(parent => {
-  parent.querySelectorAll('[data-animate]').forEach((child, i) => {
-    child.style.transitionDelay = `${i * 0.09}s`;
+  const children = parent.querySelectorAll('[data-animate]');
+  children.forEach((child, i) => {
+    child.style.transitionDelay = `${(i + 1) * 0.2}s`;
   });
 });
 
 const animateObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
+    // Exclude header & hero elements from reset so they stay visible
+    if (entry.target.closest('#header') || entry.target.closest('#home')) return;
+
     if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('animated'), 60);
-      animateObserver.unobserve(entry.target);
+      entry.target.classList.add('animated');
+    } else {
+      // Re-trigger animation when scrolling back up out of view
+      entry.target.classList.remove('animated');
     }
   });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
 animateEls.forEach(el => animateObserver.observe(el));
 
 // ===== BACK TO TOP =====
@@ -155,6 +181,28 @@ backToTop.addEventListener('click', (e) => {
   e.preventDefault();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+// ===== VIEW ALL PROPERTIES TOGGLE =====
+const viewAllBtn = document.getElementById('view-all-btn');
+if (viewAllBtn) {
+  viewAllBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const extraListings = document.querySelectorAll('.extra-listing');
+    const isHidden = extraListings[0] && extraListings[0].style.display === 'none';
+
+    extraListings.forEach((card, i) => {
+      if (isHidden) {
+        card.style.display = 'flex';
+        setTimeout(() => card.classList.add('animated'), i * 150);
+      } else {
+        card.style.display = 'none';
+        card.classList.remove('animated');
+      }
+    });
+
+    viewAllBtn.textContent = isHidden ? 'Show Less Properties' : 'View All UAE Properties';
+  });
+}
 
 // ===== WISHLIST HEARTS =====
 document.querySelectorAll('.wish-btn').forEach(btn => {
